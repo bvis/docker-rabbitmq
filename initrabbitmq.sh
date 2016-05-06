@@ -4,8 +4,8 @@ set -o monitor
 /docker-entrypoint.sh "$@" &
 
 # Wait some seconds to check the service is running
-for i in {5..0}; do
-    if rabbitmqctl status; then
+for i in {30..0}; do
+    if rabbitmqctl list_users; then
         break
     fi
     echo 'RabbitMQ init process in progress...'
@@ -15,9 +15,6 @@ if [ "$i" = 0 ]; then
     echo >&2 'RabbitMQ init process failed.'
     exit 1
 fi
-
-# Once the process is available it needs some time to accept commands, the admin user needs to exist.
-sleep 5
 
 echo
     for f in /docker-entrypoint-initrabbitmq.d/*; do
