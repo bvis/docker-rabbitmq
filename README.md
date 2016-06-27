@@ -19,3 +19,5 @@ It will we executed once the rabbit service is running:
 ```
 $ docker run --rm --name rabbit-test -v $PWD/setup:/docker-entrypoint-initrabbitmq.d/ basi/rabbitmq:latest
 ```
+
+It provides an self healthcheck system.
