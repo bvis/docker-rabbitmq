@@ -1,4 +1,4 @@
-FROM rabbitmq:3.6-management
+FROM rabbitmq:3.7-management
 
 RUN mkdir /docker-entrypoint-initrabbitmq.d
 
@@ -8,6 +8,6 @@ ENTRYPOINT ["/initrabbitmq.sh"]
 
 CMD ["rabbitmq-server"]
 
-# Auto-health check to the root page
+# Auto-health check to rabbit service status
 HEALTHCHECK --interval=10s --timeout=5s \
   CMD rabbitmqctl status || exit 1
